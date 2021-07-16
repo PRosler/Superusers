@@ -11,15 +11,18 @@ The target of the project is to analyse the importance of Light-Duty-Vehicle gas
 To analyze Superusers characteristics, data was taken from the National Household Survey from NHTS 2017 (https://nhts.ornl.gov/).
 
 The nhts.py files contain data import, cleaning, analysis and graph prepping (graphing was done later on in excel) of the nhts datasets on the vehicles and person level.
-Additionally we provide code on scraped state level vehicle registration panel data from the fhwa highway statistics (highway_statistics.py) and EV registration panel data (ev_registrations.py). 
-Some parts of the analysis and code were not used in the paper itself, however are included in this project.
+Additionally, we provide code on scraped state level vehicle registration panel data from the fhwa highway statistics (highway_statistics.py) and EV registration panel data (ev_registrations.py). 
+Some parts of the analysis and code were not used in the paper itself, however, are included in this project.
 To model the impact of policies on profiteers of a policy, profiteer_models.py was created.
 
 
 
 ## EV Adoption Models
-The folder EV Adoption contains the most relevant documents for the analysis of different EV adoption policies. Consumption Groups contains files related to the model and the model itself. .
+The folder EV Adoption contains the model for the analysis of different EV adoption policies. Consumption Groups contains files related to the model and the model itself.
+In order to evaluate emissions related to different adoption paths of gasoline consumers organized in deciles a model was created and can be found in the folder .
 
-In order to evaluate emissions related to different adoption paths of agsoline consumers organized in deciles, Model_USA.xlsx was created
+For questions about methodology and literature please contact: contact@paul-roesler.com
+
+
 
 Copyright © 2021 Coltura & Paul Roesler. All Rights Reserved.
