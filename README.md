@@ -6,7 +6,7 @@ This Project was created to provide quantitative insights for the white paper 'G
 
 
 ## Superusers
-The target of the project is to analyse the importance of Light-Duty-Vehicle gasoline superuser targeted policies for emission reduction in the transportation sector.
+This analysis highlights the importance of Light-Duty-Vehicle gasoline superuser targeted policies for emission reduction in the transportation sector.
 
 To analyze Superusers characteristics, data was taken from the National Household Survey from NHTS 2017 (https://nhts.ornl.gov/).
 
