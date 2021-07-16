@@ -19,7 +19,7 @@ To model the impact of policies on profiteers of a policy, profiteer_models.py w
 
 ## EV Adoption Models
 The folder EV Adoption contains the model for the analysis of different EV adoption policies. Consumption Groups contains files related to the model and the model itself.
-In order to evaluate emissions related to different adoption paths of gasoline consumers organized in deciles a model was created and can be found in the folder .
+In order to evaluate emissions related to different adoption paths of gasoline consumers organized in deciles a model was created and can be found in the folder Consumption Groups.
 
 For questions about methodology and literature please contact: contact@paul-roesler.com
 
