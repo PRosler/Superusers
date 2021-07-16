@@ -101,4 +101,3 @@ gas_spending = merge[merge['GSTOTCST'] >= 0]
 gas_spending = gas_spending[gas_spending['HHFAMINC_x'] >= 0]
 gas_spending = gas_spending.groupby(['fuel_decile']).mean()
 gas_spending = gas_spending[['share_gasoline_exp']]
-gas_spending.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\gas_spending.xlsx')
