@@ -5,7 +5,7 @@ This Project was created to provide quantitative insights for the white paper 'G
 3) Emission Pathways Gasoline Consumption Groups Model (Excel)
 
 The Models are based on historical, publicly available data and forecast among others number of Light-Duty-Vehicles, Gasoline Consumption and Emissions. They are constructed to provide insight into possible future scenarios and to evaluate general trends, not to provide an accurate forecast for individual variables.
-This repository is intended to give an overview of the work, but does not claim to be complete due to the amount of datasets used and individual parts of the analysis. If there are any questions, please contact us at the address shown below. 
+This repository is intended to give an overview of the work, but does not claim to be complete due to the vast amount of datasets and literature used and individual. If there are any questions, please contact us at the address shown below. 
 
 ## Superusers
 This analysis highlights the importance of Light-Duty-Vehicle gasoline superuser targeted policies for emission reduction in the transportation sector.
@@ -16,7 +16,6 @@ The nhts_vehpub_data_import_clean_prep_graphs.py file contain data import, clean
 Additionally, we provide code on scraped state level vehicle registration panel data from the fhwa highway statistics (highway_statistics.py) and EV registration panel data (ev_registrations.py). 
 Some parts of the analysis and code were not used in the paper itself, however, are included in this project.
 To model the impact of policies on profiteers, profiteer_models.py was created.
-
 
 
 ## EV Adoption Models
