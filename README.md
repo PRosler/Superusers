@@ -4,6 +4,7 @@ This Project was created to provide quantitative insights for the white paper 'G
 2) EV Adoption Policy Model (Excel)
 3) Emission Pathways Gasoline Consumption Groups Model (Excel)
 
+This repository is intended to give an overview of the work, but does not claim to be complete due to the amount of data and parts of the analysis. If you have any questions, please contact us at the address shown below.
 
 ## Superusers
 This analysis highlights the importance of Light-Duty-Vehicle gasoline superuser targeted policies for emission reduction in the transportation sector.
