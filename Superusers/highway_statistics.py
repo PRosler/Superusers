@@ -119,7 +119,6 @@ washington = panel[panel['state'] == 'Washington'].to_excel(r'C:\Users\HP Envy\D
 california = panel[panel['state'] == 'California'].to_excel(r'C:\Users\HP Envy\Dropbox\EV_Model\1_Input\Data\3_CA\fhwa_ca_registration.xlsx', index = False)
 usa = panel[panel['state'] == 'USA'].to_excel(r'C:\Users\HP Envy\Dropbox\EV_Model\1_Input\Data\1_USA\fhwa_usa_registration.xlsx', index = False)
        
-panel.to_excel(r'C:\Users\HP Envy\Dropbox\EV_Model\1_Input\fhwa_registration_panel.xlsx', index = False)          
             
 
 
