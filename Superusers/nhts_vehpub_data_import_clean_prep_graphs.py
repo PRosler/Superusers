@@ -45,7 +45,6 @@ evs = vehicles[vehicles['HFUEL'] == 3]
 
 # ev vehicles income groups
 ev_income = pd.DataFrame(evs.groupby(['HHFAMINC']).size().reset_index())
-ev_income.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\ev_income.xlsx')
 
 #ev mileage
 ranges = [0, 5000, 10000, 15000, 20000, 40000]
@@ -81,7 +80,6 @@ vehicles['fuel_decile'] = pd.qcut(vehicles['GSYRGAL'], 10, labels=False)
 usage_list = list(range(0, 3000, 10))
 usage_groups = vehicles.groupby(pd.cut(vehicles.GSYRGAL, usage_list)).count()
 usage_groups = usage_groups[['GSYRGAL']]
-usage_groups.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\usage_groups.xlsx')
 
 nhts_data = vehicles[['HOUSEID', 'VEHID','HHSTATE', 'HHSTFIPS', 'HH_CBSA', 'GSYRGAL', 'fuel_decile']]
 
@@ -108,7 +106,7 @@ fuel_percentiles = fuel_percentiles.rename(columns = {0:'Annual fuel consumption
 States Map, SUperusers
 '''
 
-df = pd.read_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\table_states.xlsx', sheet_name = 'data')
+df = pd.read_excel('FILE table_states.xlsx', sheet_name = 'data')
 pd.options.display.float_format = '{:.2%}'.format
 
 df = df.dropna()
@@ -120,7 +118,6 @@ import plotly.express as px
 
 fig = px.choropleth(locations=scope, locationmode="USA-states", color=values, scope="usa")
 fig.show()
-fig.write_image(file = r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\superusers_density.png', format='png')
 
 
 import plotly.graph_objects as go
