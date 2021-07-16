@@ -4,8 +4,8 @@ This Project was created to provide quantitative insights for the white paper 'G
 2) EV Adoption Policy Model (Excel)
 3) Emission Pathways Gasoline Consumption Groups Model (Excel)
 
-The Models are based on historical, publicly available data and forecast among others number of Light-Duty-Vehicles, Gasoline Consumption and Emissions. They are constructed to provide insight into possible future scenarios and to evaluate general trends, not to provide an accurate forecast for individual variables.
-This repository is intended to give an overview of the work, but does not claim to be complete due to the vast amount of datasets and literature used and individual. If there are any questions, please contact us at the address shown below. 
+The Models are based on historical, publicly available data and forecast, among others, number of Light-Duty-Vehicles, Gasoline Consumption and Emissions. They are constructed to provide insights into possible future scenarios and to evaluate general trends, not to provide an accurate forecast for individual variables.
+This repository is intended to give an overview of the work, but does not claim to be complete due to the vast amount of datasets and literature used. If there are any questions, please contact us at the address shown below. 
 
 ## Superusers
 This analysis highlights the importance of Light-Duty-Vehicle gasoline superuser targeted policies for emission reduction in the transportation sector.
