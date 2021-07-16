@@ -4,17 +4,17 @@ This Project was created to provide quantitative insights for the white paper 'G
 2) EV Adoption Policy Model (Excel)
 3) Emission Pathways Gasoline Consumption Groups Model (Excel)
 
-This repository is intended to give an overview of the work, but does not claim to be complete due to the amount of data and parts of the analysis. If you have any questions, please contact us at the address shown below.
+This repository is intended to give an overview of the work, but does not claim to be complete due to the amount of datasets used and individual parts of the analysis. If there are any questions, please contact us at the address shown below.
 
 ## Superusers
 This analysis highlights the importance of Light-Duty-Vehicle gasoline superuser targeted policies for emission reduction in the transportation sector.
 
 To analyze Superusers characteristics, data was taken from the National Household Survey from NHTS 2017 (https://nhts.ornl.gov/).
 
-The nhts.py files contain data import, cleaning, analysis and graph prepping (graphing was done later on in excel) of the nhts datasets on the vehicles and person level.
+The nhts_vehpub_data_import_clean_prep_graphs.py file contain data import, cleaning and graph data prepping (graphing was done later on in excel) of the nhts datasets on the vehicles and person level.
 Additionally, we provide code on scraped state level vehicle registration panel data from the fhwa highway statistics (highway_statistics.py) and EV registration panel data (ev_registrations.py). 
 Some parts of the analysis and code were not used in the paper itself, however, are included in this project.
-To model the impact of policies on profiteers of a policy, profiteer_models.py was created.
+To model the impact of policies on profiteers, profiteer_models.py was created.
 
 
 
