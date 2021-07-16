@@ -1,5 +1,5 @@
 # Superusers & EV Adoption in the USA
-This Project was created to provide quantitative insights for the white paper 'Gasoline Superusers' (M. Metz. J. London, P. Roesler) and contains three main parts:
+This Project was created to provide quantitative insights for the white paper 'Gasoline Superusers' (M. Metz. J. London, P. Roesler) and contains three main parts which were largely created independently of each other:
 1) Superusers analysis (Python)
 2) EV Adoption Policy Model (Excel)
 3) Emission Pathways Gasoline Consumption Groups Model (Excel)
