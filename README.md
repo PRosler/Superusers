@@ -17,4 +17,8 @@ In order to evaluate emissions related to different adoption paths of gsoline co
 Additionally we provide code on scraped state level vehicle registration panel data from the fhwa highway statistics and EV registration panel data. 
 
 ## EV Adoption Models
-The folder EV Adoption contains the most relevant documents for the ana
+The folder EV Adoption contains the most relevant documents for the analysis of different EV adoption policies. Consumption Groups contains files related to the model and the model itself. 
+
+
+
+Copyright © 2021 Coltura & Paul Roesler. All Rights Reserved.
