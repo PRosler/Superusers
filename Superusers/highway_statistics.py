@@ -105,9 +105,6 @@ def create_panel(df, region, columns):
 panel = create_panel(total_dfs, states_total, column_names)
 
 
-
-
-
 num_list = ['automobile_total', 'truck_total']
 panel[num_list] = panel[num_list].apply(lambda col: pd.to_numeric(col))
 panel[['automobile_total', 'truck_total']] = panel[['automobile_total', 'truck_total']].round(0)
@@ -115,10 +112,7 @@ panel['Total'] = panel['automobile_total'] + panel['truck_total']
 panel['state'] = np.where(panel['state'] == 'Total', 'USA', panel['state'])
 panel = panel[['year', 'state', 'automobile_total', 'truck_total', 'Total']]
 
-washington = panel[panel['state'] == 'Washington'].to_excel(r'C:\Users\HP Envy\Dropbox\EV_Model\1_Input\Data\2_WA\fhwa_wa_registration.xlsx', index = False)
-california = panel[panel['state'] == 'California'].to_excel(r'C:\Users\HP Envy\Dropbox\EV_Model\1_Input\Data\3_CA\fhwa_ca_registration.xlsx', index = False)
-       
-            
+
 
 
 
