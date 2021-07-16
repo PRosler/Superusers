@@ -38,23 +38,6 @@ vehicles = vehicles[(vehicles['VEHTYPE'] != 7)]
 
 
 '''
-Data validation
-'''
-vehicles_check = vehicles[(vehicles['ANNMILES'] != -9)]
-
-# compare MPG based on reported and NHTS calculated annual mileage
-vehicles_check['MPG_calc_reported'] = vehicles_check['ANNMILES'] / vehicles_check['GSYRGAL']
-vehicles_check['MPG_calc_est'] = vehicles_check['BESTMILE'] / vehicles_check['GSYRGAL']
-
-
-vehicles_check['MPG_diff_reported'] = vehicles_check['MPG_calc_reported'] - vehicles_check['FEGEMPG']
-vehicles_check['MPG_diff_est'] = vehicles_check['MPG_calc_est'] - vehicles_check['FEGEMPG']
-
-#print(vehicles_check['MPG_diff_reported'].mean(), vehicles_check['MPG_diff_est'].mean())
-
-print(vehicles['FEGEMPG'].mean())
-print(vehicles['BESTMILE'].mean())
-'''
 EV vehicles
 '''
 evs = vehicles[vehicles['HFUEL'] == 3]
@@ -70,7 +53,6 @@ ev_miles = evs.groupby(pd.cut(evs.BESTMILE, ranges)).count()
 ev_miles = ev_miles[['VEHID']]
 ev_miles['%'] = ev_miles['VEHID'] / ev_miles['VEHID'].sum()
 
-ev_miles.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\ev_miles.xlsx')
 
 
 '''
@@ -102,7 +84,6 @@ usage_groups = usage_groups[['GSYRGAL']]
 usage_groups.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\usage_groups.xlsx')
 
 nhts_data = vehicles[['HOUSEID', 'VEHID','HHSTATE', 'HHSTFIPS', 'HH_CBSA', 'GSYRGAL', 'fuel_decile']]
-nhts_data.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\nhts_data_clean.xlsx')
 
 
 vehicles_ca = vehicles[vehicles['HHSTATE'] == 'CA']
@@ -120,7 +101,6 @@ for i in percentiles:
 
 fuel_percentiles = pd.DataFrame(fuel_percentiles)
 fuel_percentiles = fuel_percentiles.rename(columns = {0:'Annual fuel consumption in US gallons'})
-fuel_percentiles.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\fuel_percentiles.xlsx')
 
 
 
@@ -160,7 +140,7 @@ fig.update_layout(
 )
 fig = fig.update_yaxes(tickformat="%")
 fig.show()
-fig.write_image(file = r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\superusers_density_1.png', format='png')
+
 
 
 '''
@@ -184,7 +164,7 @@ fig.update_layout(
 )
 fig = fig.update_yaxes(tickformat="%")
 fig.show()
-fig.write_image(file = r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\ev_density.png', format='png')
+
 
 
 
@@ -211,11 +191,10 @@ models = models[models['MODEL'] < 70000]
 
 models = models.sort_values('Freq', ascending = False)
 models_sample = models.head(200)
-models_sample.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\1_Input\models_sample.xlsx')
 
 
-sell_prices = pd.read_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\1_Input\Vehicle_Values.xlsx').iloc[:, :5]
-model_vehicles_data = pd.read_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\1_Input\organize_sample_model.xlsx', sheet_name = 'data')
+sell_prices = pd.read_excel('FILE VEHICLE_VALUES').iloc[:, :5]
+model_vehicles_data = pd.read_excel('FILE organize_sample_model.xlsx', sheet_name = 'data')
 
 sell_price_data = pd.merge(sell_prices, model_vehicles_data, on = ['VEHYEAR', 'MAKE_NAME', 'MODEL_NAME'], how = 'inner').rename(columns = {'VEH YEAR + 4 PRICE': 'AVG_USED_PRICE_4'})
 sell_price_data['MODEL'] = sell_price_data['MODEL'].astype('str')
@@ -236,7 +215,6 @@ number_cars_usa = 267000000
 scaling = number_cars_usa / number_cars_model
 gas_scaled_usa = total_usage_nhts * scaling
 
-vehicles_model.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\1_Input\input_data_financial_model.xlsx', index = False)
 
 
 
@@ -259,7 +237,6 @@ def graph_data_prepper(df, var1, var2, name, filter_group):
     filtered_df.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\{}.xlsx'.format(name))
     total = df_clean[df_clean[var2] != 9]
     total = pd.DataFrame(total.groupby([var1]).size().reset_index())
-    total.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\{}_total.xlsx'.format(name))
 
     return filtered_df
 
@@ -284,36 +261,11 @@ race = graph_data_prepper(vehicles, 'HH_RACE', 'fuel_decile', 'race', 9)
 hispanic = graph_data_prepper(vehicles, 'HH_HISP', 'fuel_decile', 'hispanic', 9)
 
 
-'''
-CA
-'''
-# use graph_data_prepper  to export information about variables of interest
-income_usage_ca = graph_data_prepper(vehicles_ca, 'HHFAMINC', 'fuel_decile', 'usage_income_ca', 9)
-metrolpolitan_ca = graph_data_prepper(vehicles_ca, 'MSACAT', 'fuel_decile', 'metrolpolitan_ca', 9)
-age_usage_ca = graph_data_prepper(vehicles_ca, 'VEHAGE', 'fuel_decile', 'age_usage_ca', 9)
-# additional cleaning step for vehicle & fuel type
-vehicle_type_ca = vehicles[(vehicles['VEHTYPE'] != 97)]
-vehicle_type_ca =  vehicle_type[(vehicle_type['VEHTYPE'] > 0)]
-vehicle_type_ca = graph_data_prepper(vehicle_type_ca, 'VEHTYPE', 'fuel_decile', 'vehicle_type_ca', 9)
-
-race_ca = graph_data_prepper(vehicles_ca, 'HH_RACE', 'fuel_decile', 'race_ca', 9)
-hispanic_ca = graph_data_prepper(vehicles_ca, 'HH_HISP', 'fuel_decile', 'hispanic_ca', 9)
-
-
-'''
-San Jose
-'''
-san_jose = vehicles[vehicles['HH_CBSA'] == '41940']
-income_usage_sj  = graph_data_prepper(san_jose, 'HHFAMINC', 'fuel_decile', 'usage_income_sj', 9)
-vehicle_type_sj = vehicles[(vehicles['VEHTYPE'] != 97)]
-vehicle_type_sj =  vehicle_type_sj[(vehicle_type_sj['VEHTYPE'] > 0)]
-vehicle_type_sj = graph_data_prepper(vehicle_type_sj, 'VEHTYPE', 'fuel_decile', 'vehicle_type_sj', 9)
 
 
 # mpg
 mpg = vehicles[(vehicles['FEGEMPG'] > 0)]
 mpg = pd.DataFrame(mpg.groupby(['fuel_decile'])['FEGEMPG'].mean().reset_index())
-mpg.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\mpg.xlsx')
 
 #bestmile
 bestmile = vehicles[(vehicles['BESTMILE'] >= 0)]
@@ -321,7 +273,6 @@ bestmile_group = pd.DataFrame(bestmile.groupby(['fuel_decile'])['BESTMILE'].mean
 bestmile_mean = bestmile['BESTMILE'].mean()
 bestmile_no_superusers = bestmile[bestmile['fuel_decile'] != 9]
 bestmile_no_superusers = bestmile['BESTMILE'].mean()
-bestmile.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\bestmile_group.xlsx')
 
 # fuel usage
 fuel_usage = pd.DataFrame(vehicles.groupby(['fuel_decile'])['GSYRGAL'].mean().reset_index())
@@ -335,17 +286,14 @@ fuel_usage.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\fuel_u
 location_usage = vehicles[(vehicles['HBHUR'] != -9)]
 location_usage_total = location_usage[location_usage['fuel_decile'] != 9]
 location_usage_total = pd.DataFrame(location_usage_total.groupby(['HBHUR']).size().reset_index())
-location_usage_total.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\location_usage_total.xlsx')
 
 # location superusers
 location_usage = pd.DataFrame(location_usage.groupby(['HBHUR', 'fuel_decile']).size().reset_index())
 location_usage = location_usage[location_usage['fuel_decile'] == 9]
-location_usage.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\location_usage.xlsx')
 
 # location usage fur EVs
 location_evs = evs[(evs['HBHUR'] != -9)]
 location_evs = pd.DataFrame(location_evs.groupby(['HBHUR']).size().reset_index())
-location_evs.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\location_evs.xlsx')
 
 
 
@@ -353,7 +301,6 @@ location_evs.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\loca
 location_usage_ca = vehicles[(vehicles['HBHUR'] != -9)]
 location_usage_ca = pd.DataFrame(location_usage_ca.groupby(['HBHUR', 'fuel_decile']).size().reset_index())
 location_usage_ca = location_usage_ca[location_usage_ca['fuel_decile'] == 9]
-location_usage_ca.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\location_usage_ca.xlsx')
 
 
 
@@ -363,22 +310,6 @@ location_usage_ca.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output
 gas_usage_deciles = pd.DataFrame(vehicles.groupby(pd.qcut(vehicles.GSYRGAL, 10))['GSYRGAL'].sum())
 gas_usage_deciles['fuel_consumption_deciles_%'] = gas_usage_deciles['GSYRGAL'] / gas_usage_deciles['GSYRGAL'].sum()
 gas_usage_deciles = gas_usage_deciles.rename(columns = {'GSYRGAL': 'sum_ann_fuel_consumption'})
-gas_usage_deciles.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\gas_usage_deciles.xlsx')
-
-# gas usage deciles ca
-gas_usage_deciles_ca = pd.DataFrame(vehicles_ca.groupby(pd.qcut(vehicles_ca.GSYRGAL, 10))['GSYRGAL'].sum())
-gas_usage_deciles_ca['fuel_consumption_deciles_%'] = gas_usage_deciles_ca['GSYRGAL'] / gas_usage_deciles_ca['GSYRGAL'].sum()
-gas_usage_deciles_ca = gas_usage_deciles_ca.rename(columns = {'GSYRGAL': 'sum_ann_fuel_consumption'})
-gas_usage_deciles_ca.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\gas_usage_deciles_ca.xlsx')
-
-# gas usage deciles san jose
-gas_usage_deciles_sj = pd.DataFrame(san_jose.groupby(pd.qcut(san_jose.GSYRGAL, 10))['GSYRGAL'].sum())
-gas_usage_deciles_sj['fuel_consumption_deciles_%'] = gas_usage_deciles_sj['GSYRGAL'] / gas_usage_deciles_sj['GSYRGAL'].sum()
-gas_usage_deciles_sj = gas_usage_deciles_sj.rename(columns = {'GSYRGAL': 'sum_ann_fuel_consumption'})
-gas_usage_deciles_sj.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\gas_usage_deciles_sj.xlsx')
-
-
-
 
 # average age
 age = vehicles[(vehicles['VEHAGE'] > 0)]
@@ -391,10 +322,7 @@ age_ca = pd.DataFrame(age_ca.groupby(pd.qcut(age_ca.GSYRGAL, 10))['VEHAGE'].mean
 age_ca.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\age_ca.xlsx')
 
 
-
 # sort by metro area 
-
-
 def sort_df(df, var1, var2, name):
     df1 = pd.DataFrame(df.groupby([var1, var2]).size().reset_index())
     df1 = df1[df1[var2] == 9]
@@ -416,11 +344,9 @@ def sort_df(df, var1, var2, name):
 superusers_cities = sort_df(vehicles, 'HH_CBSA', 'fuel_decile', 'metro_cities')
 superusers_cities = superusers_cities[superusers_cities['HH_CBSA'] != 'XXXXX']
 superusers_cities['HH_CBSA'] = superusers_cities['HH_CBSA'].astype(float)
-superusers_cities.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\metro_cities.xlsx', index = False)
 
 
 superusers_states = sort_df(vehicles, 'HHSTATE', 'fuel_decile', 'superusers_states')
-superusers_states.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\superusers_states.xlsx', index = False)
 
 
 
@@ -447,7 +373,6 @@ def favorite(df, head):
     return df
 
 pop_fav = favorite(vehicles, 15)
-pop_fav.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\fav_pop_model.xlsx', index = False)
 
 su_fav = favorite(superusers, 15)
 
@@ -459,7 +384,6 @@ su_fav = pd.merge(su_fav, total_freq, how = 'left', on = ['MODEL', 'MAKE'])
 su_fav['superusers_share_total'] = su_fav['Freq'] / su_fav['Freq_total']
 su_fav['superusers_share_internal'] = su_fav['Freq'] / len(superusers['ID'])
 
-su_fav.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\fav_superusers_model.xlsx', index = False)
 
 
 vehicles = vehicles.rename(columns = {'MAKE_x': 'MAKE'})
@@ -474,4 +398,3 @@ model_consumption_freq['freq_%'] = model_consumption_freq['Freq'] / len(vehicles
 total_gasoline_consumption_2019 = 142000000000
 
 model_consumption_freq['consumption_model_usa'] = model_consumption_freq['freq_%'] * total_gasoline_consumption_2019
-model_consumption_freq.to_excel(r'C:\Users\HP Envy\Dropbox\Gas_Subsidy_Model\3_Output\model_consumption_freq.xlsx', index = False)
