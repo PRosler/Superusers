@@ -1,14 +1,11 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Dec  6 11:03:25 2021
-
-@author: HP Envy
-"""
+'''
+Author: Paul Roesler
+'''
 
 import pandas as pd
 import numpy as np
 
-path = r'A:\Upwork\DMV_Data'
+path = r'PUT_YOUR_DATAPATH_HERE'
 
 df_in = pd.read_excel(path +r'\Data\afcd_10567_pev_sales_2-28-20.xlsx')
 
