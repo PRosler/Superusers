@@ -1,14 +1,11 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 25 09:17:03 2021
-
-@author: HP Envy
-"""
+'''
+Author: Paul Roesler
+'''
 
 import pandas as pd
 import numpy as np
 
-path = r'A:\Upwork\DMV_Data'
+path = r'PUT_YOUR_DATAPATH_HERE'
 
 '''
 import census data: ACS DEMOGRAPHIC AND HOUSING ESTIMATES
