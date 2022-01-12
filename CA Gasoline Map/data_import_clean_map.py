@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct  4 12:22:09 2021
-
-@author: HP Envy
-"""
+'''
+Author: Paul Roesler
+'''
 
 '''
 Import DMV data
