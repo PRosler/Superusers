@@ -1,13 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Jan  3 10:33:04 2022
-
-@author: HP Envy
-"""
+'''
+Author: Paul Roesler
+'''
 
 import pandas as pd
 
-path = r'A:\Upwork\DMV_Data'
+path = r'PUT_YOUR_DATAPATH_HERE'
 
 '''
 County level
