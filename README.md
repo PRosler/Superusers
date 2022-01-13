@@ -25,7 +25,7 @@ For questions about data, methodology and literature please contact: contact@pau
 
 
 ## CA Gasoline Map
-The folder CA Gasoline Map contains the python code with the main file dmv_data_import_clean_graph.py and further census.py, afdc.py and cec_gasoline_sales.py. The latter three are importing and preparing datasets from Census, Alternative Fuel Data Center and the CEC, links to the sources are provided in the code. The main combines all datasets and runs the other .py files in order to merge, clean and prepare the data to create a folium map about gasoline usage in California. The data provided for DMV is not yet to be published, however here some insights into the structure and content:
+The folder CA Gasoline Map contains the python code with the main file dmv_data_import_clean_map.py and further census.py, afdc.py and cec_gasoline_sales.py. The latter three are importing and preparing datasets from Census, Alternative Fuel Data Center and the CEC, links to the sources are provided in the code. The main combines all datasets and runs the other .py files in order to merge, clean and prepare the data to create a folium map about gasoline usage in California. The data provided for DMV is not yet to be published, however here some insights into the structure and content:
 
 The data contains information about transactions of vehicles with the following variables:
   Vehicle_ID: Unique identification number for each vehicle.
